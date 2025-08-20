@@ -453,9 +453,35 @@
         function showVideoUI(show) { videoCallContainer.style.display = show ? 'block' : 'none'; }
         
         // --- STICKER LOGIC ---
-        const stickerList = [ 'https://media1.giphy.com/media/l41Yw0vYh92e62m76/200.gif', 'https://media2.giphy.com/media/M90mJvfWfd5mbUuULX/200.gif', 'https://media1.giphy.com/media/WEGzXpoIJoQ4E/200.gif', 'https://media1.giphy.com/media/U4Lhzzodsb9i8/200.gif', 'https://media0.giphy.com/media/3o6Zt62PeJeFUDwBUI/200.gif', 'https://media3.giphy.com/media/od5H3PmEG5EVq/200.gif', 'https://media4.giphy.com/media/XpgOZHuDfIkoM/200.gif', 'https://media0.giphy.com/media/3o7TKSjRrf2vOLwG2I/200.gif', 'https://media1.giphy.com/media/C9x8gX02SnMvK/200.gif', 'https://media2.giphy.com/media/l41lZxzroU33typuU/200.gif', 'https://media1.giphy.com/media/d5A6gKsvPl9bQ3s5a3/200.gif', 'https://media0.giphy.com/media/l2Je66zG6mAAZxgqI/200.gif' ];
-        stickerList.forEach(url => { const img = document.createElement('img'); img.src = url; img.classList.add('sticker-item'); img.addEventListener('click', () => sendSticker(url)); stickerPicker.appendChild(img); });
-        
+const stickerList = [
+    // --- Love & Kiss ---
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3dvZDN2eGprZGE5ZnVrc3V6cTYxZnRrcDFoZHBldnNnN3FqbGpnYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/1136UBdSNn6Bu8/giphy.gif', // I Love You
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmFhYmE5N2lsc2Zzbnl5a3lidnptcGI3bXV0eGhxZnY0eGtnMnZpcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/fldJp5Tqwf5rG/giphy.gif', // Flying Kiss
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2lneTlpcjN0aTd1dDRuZGZ6ODk2c2JqYnJzMGE1azh1MWhzY3E5byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7TKSjRrf2vOLwG2I/giphy.gif', // Cute Love
+    
+    // --- Hug & Miss You ---
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaG1iMmJpbXFjajdmeGJzMjRmbXJ3ejlhcWQyZ3ZmeWx0d3pnMWp0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/G3va31oEEnIkM/giphy.gif', // Big Hug
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeWZlZmE2MmV0eGdzYjJ4ZzJ4ZWRzM25lZDhveTYwZzB1cTR0MXR6dSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/l41Yw0vYh92e62m76/giphy.gif', // I Miss You
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWM4N3RzMGN1aWx0bXJ1dXFpa3N1N2c0OHhvZ3g0NTFwcnk0NnI5bSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o6wrnKHoc7i24d9v2/giphy.gif', // Come here hug
+    
+    // --- Emotions (Angry, Funny, Sad) ---
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2p1b2d0bXJ2MWQ4ZmVoOG1xYzJ5djQ0ZmI4Z29ja2U2bHRsNjY3eCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/1A6aMvTObi2Y8/giphy.gif', // Angry Cat
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYzRzajR2MWtqajBtbXgweWJ0bjNsN2I4dWQ4Zm15YW5idjFwM2NqZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/u2dI2h52gAzNS/giphy.gif', // Funny Dance
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnZvZWx2c2lpdmt5NWhxYWNlY3d1aWZld2J1ZWZoc2txcGI3Z3IwaSZlcD12MV9pbnRlcm5hbF_naWZfYnlfaWQmY3Q9cw/9Y5BbDSkSTiY8/giphy.gif', // Sad crying
+    
+    // --- Greetings & Reactions ---
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW1qN3B2MnRsbDN0eGN1dDF5dWNwOTh4OGlscHFwNGoyZ2p6dmFmZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5xtSheroAVM2A5MSoA8/giphy.gif',  // Hello / Hi
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGhrYjl1OGd1eWt5Z3Z1OHBzaTJ6MTJtN3c3NThxdHQ3enJkOTkxeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3o7abBUNCb6aP3dgeA/giphy.gif', // Thumbs Up / Okay
+    'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaGI1NnR6aHZxY24xNnpqZ2Y0dm1tNzh0cDhscWh0aHFtczM1OHF2eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/BPJmthQ3YRwD6/giphy.gif'  // Thank You
+];
+
+stickerList.forEach(url => { 
+    const img = document.createElement('img'); 
+    img.src = url; 
+    img.classList.add('sticker-item'); 
+    img.addEventListener('click', () => sendSticker(url)); 
+    stickerPicker.appendChild(img); 
+});
         // --- EVENT LISTENERS ---
         startBtn.addEventListener('click', () => {
             startPage.style.display = 'none';
